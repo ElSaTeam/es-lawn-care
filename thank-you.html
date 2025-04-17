@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Thank you for contacting ES Lawn Care in Winston-Salem, NC. We’ll respond soon to help with your lawn care needs!">
+    <title>Thank You | ES Lawn Care in Winston-Salem</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="header-nav-container">
+        <header>
+            <img src="ES Lawn Care Logo.webp" alt="ES Lawn Care Logo">
+        </header>
+        <nav role="navigation">
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="hamburger"></label>
+            <div class="nav-links">
+                <a href="index.html" data-debug="Home link">Home</a>
+                <a href="lawn-maintenance.html" data-debug="Lawn Maintenance link">Lawn Maintenance</a>
+                <a href="portfolio.html" data-debug="Our Work link">Our Work</a>
+                <a href="about.html" data-debug="About Us link">About Us</a>
+                <a href="contact.html" data-debug="Contact link">Contact</a>
+            </div>
+        </nav>
+    </div>
+    <section id="thank-you" class="clearfix">
+        <h1 class="fade-in">Thank You for Contacting ES Lawn Care!</h1>
+        <p>We’ve received your message and sent a confirmation to your phone via SMS. Our team will reach out shortly to discuss your needs and schedule your free consultation. At ES Lawn Care, we’re dedicated to providing top-quality lawn care services in Winston-Salem, NC. Whether you’re looking for regular lawn maintenance, landscaping, or a seasonal cleanup, we’re here to help. In the meantime, feel free to explore our website to learn more about our services, view our portfolio, or read testimonials from satisfied customers in Winston-Salem.</p>
+        <p>Since 2019, ES Lawn Care has been a trusted name in lawn care for the Winston-Salem community. We take pride in our attention to detail, eco-friendly practices, and commitment to customer satisfaction. Our services include mowing, fertilizing, weed control, and more, all designed to keep your lawn looking its best year-round. We also offer seasonal services like leaf removal and spring cleanups to ensure your outdoor space is always ready for enjoyment. If you have any questions or need immediate assistance, don’t hesitate to call us at (336) 575-0965. We’re excited to work with you and help you achieve the lawn of your dreams!</p>
+        <p><a href="index.html" class="cta-button">Return to Home</a></p>
+    </section>
+    <footer>
+        <p>© 2025 ES Lawn Care LLP. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
+    </footer>
+    <script>
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        window.addEventListener('load', function() {
+            const headerNav = document.querySelector('.header-nav-container');
+            const sections = document.querySelectorAll('section');
+            if (headerNav && sections.length > 0) {
+                const headerHeight = headerNav.offsetHeight;
+                sections.forEach(section => {
+                    section.style.marginTop = `${headerHeight}px`;
+                });
+            }
+        });
+        window.addEventListener('resize', function() {
+            const headerNav = document.querySelector('.header-nav-container');
+            const sections = document.querySelectorAll('section');
+            if (headerNav && sections.length > 0) {
+                const headerHeight = headerNav.offsetHeight;
+                sections.forEach(section => {
+                    section.style.marginTop = `${headerHeight}px`;
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=2.0">
+    <meta name="description" content="Contact ES Lawn Care for top lawn care services in Winston-Salem, NC. Use our form or call us to schedule your free consultation today!">
+    <title>Contact ES Lawn Care | Winston-Salem, NC</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" defer>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="header-nav-container">
+        <header>
+            <img src="ES Lawn Care Logo.webp" alt="ES Lawn Care Logo" width="300" height="100">
+        </header>
+        <nav role="navigation">
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="hamburger"></label>
+            <div class="nav-links">
+                <a href="index.html" data-debug="Home link">Home</a>
+                <a href="lawn-maintenance.html" data-debug="Lawn Maintenance link">Lawn Maintenance</a>
+                <a href="portfolio.html" data-debug="Our Work link">Our Work</a>
+                <a href="about.html" data-debug="About Us link">About Us</a>
+                <a href="testimonials.html" data-debug="Testimonials link">Testimonials</a>
+                <a href="contact.html" data-debug="Contact link">Contact</a>
+            </div>
+            <noscript>
+                <p style="color: #C8E6C9; text-align: center; padding: 10px;">JavaScript is disabled. The menu should still work.</p>
+            </noscript>
+        </nav>
+    </div>
+    <section id="contact" class="clearfix">
+        <h1 class="fade-in">Contact ES Lawn Care in Winston-Salem, NC</h1>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Contact Information</h2>
+                <p><i class="fas fa-phone"></i> (336) 575-0965 / (336) 480-6151</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 8:00 AM - 5:30 PM</p>
+                <p>Ready to transform your lawn? ES Lawn Care provides top-quality lawn care services in Winston-Salem, NC, including mowing, fertilizing, landscaping, and seasonal cleanups. Whether you’re a homeowner or a business owner, we’re here to help you achieve a lush, green lawn that enhances your property’s curb appeal. Our family-owned business has been serving the Winston-Salem community since 2019, and we’re committed to delivering exceptional service tailored to your needs.</p>
+            </div>
+            <div class="contact-form">
+                <h2>Send Us a Message</h2>
+                <p>We understand that every lawn is unique, which is why we offer customized lawn care plans to suit your specific requirements. From regular maintenance to one-time cleanups, our team ensures your lawn stays healthy and vibrant year-round. We also provide expert advice on lawn care practices, such as proper watering and fertilization, to help you maintain your lawn between our visits. Our goal is to make lawn care hassle-free for you, so you can enjoy your outdoor space without the stress. Contact us today to learn more about our services, discuss your lawn care needs, or get a free quote. We look forward to working with you!</p>
+                <form id="contact-form" action="/thank-you" method="POST" data-netlify="true" data-netlify-recaptcha="true" name="contact">
+                    <input type="hidden" name="form-name" value="contact">
+                    <label for="name">Name <span aria-hidden="true">*</span></label>
+                    <input type="text" id="name" name="name" required aria-required="true">
+                    <label for="message">Message <span aria-hidden="true">*</span></label>
+                    <textarea id="message" name="message" required aria-required="true"></textarea>
+                    <div data-netlify-recaptcha="true"></div>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+        <a href="contact.html" class="cta-button">Get a Free Quote</a>
+    </section>
+    <footer>
+        <p>© 2025 ES Lawn Care LLP. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
+    </footer>
+    <script defer src="scripts.js"></script>
+    <script>
+    window.addEventListener('load', function() {
+        const headerNav = document.querySelector('.header-nav-container');
+        const sections = document.querySelectorAll('section');
+        if (headerNav && sections.length > 0) {
+            const headerHeight = headerNav.offsetHeight;
+            sections.forEach(section => {
+                section.style.marginTop = `${headerHeight}px`;
+            });
+        }
+    });
+    window.addEventListener('resize', function() {
+        const headerNav = document.querySelector('.header-nav-container');
+        const sections = document.querySelectorAll('section');
+        if (headerNav && sections.length > 0) {
+            const headerHeight = headerNav.offsetHeight;
+            sections.forEach(section => {
+                section.style.marginTop = `${headerHeight}px`;
+            });
+        }
+    });
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                window.location.href = 'https://eslawncarenc.com/thank-you.html';
+            } else {
+                alert('There was an error submitting the form. Please try again.');
+            }
+        }).catch(error => {
+            alert('There was an error submitting the form. Please try again.');
+        });
+    });
+    </script>
+</body>
+</html>
