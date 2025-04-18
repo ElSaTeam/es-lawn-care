@@ -25,17 +25,17 @@ exports.handler = async (event) => {
   let name, message;
 
   if (event.headers['content-type']?.includes('multipart/form-data')) {
-    const boundary = event.headers['content-type'].match(/boundary=(.+)/)[1];
-    const parts = event.body.split(`--${boundary}`);
-    for (const part of parts) {
-      if (part.includes('name="name"')) {
-        name = part.split('\r\n\r\n')[1]?.split('\r\n')[0]?.trim() || 'Unknown';
-      }
-      if (part.includes('name="message"')) {
-        message = part.split('\r\n\r\n')[1]?.split('\r\n')[0]?.trim() || 'No message';
-      }
+  const boundary = event.headers['content-type'].match(/boundary=(.+)/)[1];
+  const parts = event.body.split(`--${boundary}`);
+  for (const part of parts) {
+    if (part.includes('name="name"')) {
+      name = part.split('\r\n\r\n')[1]?.split('\r\n')[0]?.trim() || 'Unknown';
     }
-  } else if (event.headers['content-type']?.includes('application/x-www-form-urlencoded')) {
+    if (part.includes('name="message"')) {
+      message = part.split('\r\n\r\n')[1]?.split('\r\n')[0]?.trim() || 'No message';
+    }
+  }
+} else if (event.headers['content-type']?.includes('application/x-www-form-urlencoded')) {
     const params = new URLSearchParams(event.body);
     name = params.get('name') || 'Unknown';
     message = params.get('message') || 'No message';
