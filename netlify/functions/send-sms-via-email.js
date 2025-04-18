@@ -1,8 +1,7 @@
 const nodemailer = require('nodemailer');
 
 exports.handler = async (event) => {
-  console.log('Event body:', event.body);
-  console.log('Content-Type:', event.headers['content-type']);
+  console.log('Full event:', JSON.stringify(event, null, 2));
 
   if (!event.body) {
     console.log('No event body received');
@@ -13,6 +12,9 @@ exports.handler = async (event) => {
   }
 
   let name, message;
+
+  console.log('Content-Type:', event.headers['content-type']);
+  console.log('Event body:', event.body);
 
   if (event.headers['content-type']?.includes('application/x-www-form-urlencoded')) {
     const params = new URLSearchParams(event.body);
@@ -28,6 +30,18 @@ exports.handler = async (event) => {
       if (part.includes('name="message"')) {
         message = part.split('\r\n\r\n')[1]?.split('\r\n')[0]?.trim();
       }
+    }
+  } else if (event.headers['content-type']?.includes('application/json')) {
+    try {
+      const formData = JSON.parse(event.body);
+      name = formData.payload?.data?.name;
+      message = formData.payload?.data?.message;
+    } catch (error) {
+      console.log('JSON parse error:', error.message);
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: 'Failed to parse JSON: ' + error.message })
+      };
     }
   } else {
     console.log('Unexpected content type:', event.headers['content-type']);
@@ -55,7 +69,7 @@ exports.handler = async (event) => {
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: '3365750965@vtext.com',
+    to: '3364806151@vtext.com',
     subject: 'ES Lawn Care Inquiry',
     text: `Inquiry: ${name}, ${message}`
   };
