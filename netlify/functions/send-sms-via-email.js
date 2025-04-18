@@ -4,6 +4,7 @@ exports.handler = async (event) => {
   console.log('Full event:', JSON.stringify(event, null, 2));
   console.log('HTTP Method:', event.httpMethod);
   console.log('Content-Type:', event.headers['content-type']);
+  console.log('Event body:', event.body);
 
   // Only allow POST requests
   if (event.httpMethod !== 'POST') {
@@ -28,9 +29,9 @@ exports.handler = async (event) => {
   if (event.headers['content-type']?.includes('application/json')) {
     try {
       const formData = JSON.parse(event.body);
-      console.log('Parsed formData:', formData);
-      name = formData.payload?.data?.name;
-      message = formData.payload?.data?.message;
+      console.log('Parsed formData:', JSON.stringify(formData, null, 2));
+      name = formData.payload?.data?.name || formData.name;
+      message = formData.payload?.data?.message || formData.message;
     } catch (error) {
       console.log('JSON parse error:', error.message);
       return {
@@ -57,7 +58,7 @@ exports.handler = async (event) => {
     console.log('Unexpected content type:', event.headers['content-type']);
     return {
       statusCode: 400,
-      body: JSON.stringify({ error: 'Unsupported content type' })
+      body: JSON.stringify({ error: 'Unsupported content type: ' + event.headers['content-type'] })
     };
   }
 
