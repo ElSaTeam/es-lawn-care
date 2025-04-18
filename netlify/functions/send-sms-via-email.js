@@ -24,20 +24,7 @@ exports.handler = async (event) => {
 
   let name, message;
 
-  if (event.headers['content-type']?.includes('application/json')) {
-    try {
-      const formData = JSON.parse(event.body);
-      console.log('Parsed formData:', JSON.stringify(formData, null, 2));
-      name = formData.payload?.data?.name || formData.name || formData.data?.name || 'Unknown';
-      message = formData.payload?.data?.message || formData.message || formData.data?.message || 'No message';
-    } catch (error) {
-      console.log('JSON parse error:', error.message);
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ error: 'Failed to parse JSON: ' + error.message })
-      };
-    }
-  } else if (event.headers['content-type']?.includes('multipart/form-data')) {
+  if (event.headers['content-type']?.includes('multipart/form-data')) {
     const boundary = event.headers['content-type'].match(/boundary=(.+)/)[1];
     const parts = event.body.split(`--${boundary}`);
     for (const part of parts) {
@@ -52,6 +39,19 @@ exports.handler = async (event) => {
     const params = new URLSearchParams(event.body);
     name = params.get('name') || 'Unknown';
     message = params.get('message') || 'No message';
+  } else if (event.headers['content-type']?.includes('application/json')) {
+    try {
+      const formData = JSON.parse(event.body);
+      console.log('Parsed formData:', JSON.stringify(formData, null, 2));
+      name = formData.name || formData.payload?.data?.name || formData.data?.name || 'Unknown';
+      message = formData.message || formData.payload?.data?.message || formData.data?.message || 'No message';
+    } catch (error) {
+      console.log('JSON parse error:', error.message);
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: 'Failed to parse JSON: ' + error.message })
+      };
+    }
   } else {
     console.log('Unexpected content type:', event.headers['content-type'] || 'none');
     return {
