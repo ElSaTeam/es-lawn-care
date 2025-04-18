@@ -6,7 +6,6 @@ exports.handler = async (event) => {
   console.log('Content-Type:', event.headers['content-type']);
   console.log('Event body:', event.body);
 
-  // Only allow POST requests
   if (event.httpMethod !== 'POST') {
     console.log('Invalid HTTP method:', event.httpMethod);
     return {
@@ -25,13 +24,12 @@ exports.handler = async (event) => {
 
   let name, message;
 
-  // Try parsing as JSON (Netlify Forms typically sends JSON)
   if (event.headers['content-type']?.includes('application/json')) {
     try {
       const formData = JSON.parse(event.body);
       console.log('Parsed formData:', JSON.stringify(formData, null, 2));
-      name = formData.payload?.data?.name || formData.name || formData.data?.name;
-      message = formData.payload?.data?.message || formData.message || formData.data?.message;
+      name = formData.payload?.data?.name || formData.name || formData.data?.name || 'Unknown';
+      message = formData.payload?.data?.message || formData.message || formData.data?.message || 'No message';
     } catch (error) {
       console.log('JSON parse error:', error.message);
       return {
@@ -39,21 +37,21 @@ exports.handler = async (event) => {
         body: JSON.stringify({ error: 'Failed to parse JSON: ' + error.message })
       };
     }
-  } else if (event.headers['content-type']?.includes('application/x-www-form-urlencoded')) {
-    const params = new URLSearchParams(event.body);
-    name = params.get('name');
-    message = params.get('message');
   } else if (event.headers['content-type']?.includes('multipart/form-data')) {
     const boundary = event.headers['content-type'].match(/boundary=(.+)/)[1];
     const parts = event.body.split(`--${boundary}`);
     for (const part of parts) {
       if (part.includes('name="name"')) {
-        name = part.split('\r\n\r\n')[1]?.split('\r\n')[0]?.trim();
+        name = part.split('\r\n\r\n')[1]?.split('\r\n')[0]?.trim() || 'Unknown';
       }
       if (part.includes('name="message"')) {
-        message = part.split('\r\n\r\n')[1]?.split('\r\n')[0]?.trim();
+        message = part.split('\r\n\r\n')[1]?.split('\r\n')[0]?.trim() || 'No message';
       }
     }
+  } else if (event.headers['content-type']?.includes('application/x-www-form-urlencoded')) {
+    const params = new URLSearchParams(event.body);
+    name = params.get('name') || 'Unknown';
+    message = params.get('message') || 'No message';
   } else {
     console.log('Unexpected content type:', event.headers['content-type'] || 'none');
     return {
