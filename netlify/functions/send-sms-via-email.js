@@ -1,12 +1,10 @@
 const nodemailer = require('nodemailer');
 
 exports.handler = async (event) => {
-  // Log the entire event for debugging
-  console.log('Full event:', JSON.stringify(event, null, 2));
+  console.log('Event body:', event.body);
+  console.log('Content-Type:', event.headers['content-type']);
 
-  // Check if event.body exists
   if (!event.body) {
-    console.log('No event body received');
     return {
       statusCode: 400,
       body: JSON.stringify({ error: 'No event body received' })
@@ -15,47 +13,28 @@ exports.handler = async (event) => {
 
   let name, message;
 
-  // Handle different content types
-  if (event.headers && event.headers['content-type']?.includes('application/x-www-form-urlencoded')) {
-    // Handle URL-encoded form data (Netlify Forms sometimes sends this)
-    console.log('Handling URL-encoded form data');
+  // Handle URL-encoded form data
+  if (event.headers['content-type']?.includes('application/x-www-form-urlencoded')) {
     const params = new URLSearchParams(event.body);
     name = params.get('name');
     message = params.get('message');
   } else {
-    // Try parsing as JSON (Netlify Forms typically sends JSON)
-    console.log('Attempting to parse event.body as JSON');
-    try {
-      const formData = JSON.parse(event.body);
-      if (formData.payload && formData.payload.data) {
-        name = formData.payload.data.name;
-        message = formData.payload.data.message;
-      } else {
-        console.log('No payload.data in formData');
-        return {
-          statusCode: 400,
-          body: JSON.stringify({ error: 'Missing payload.data in form submission' })
-        };
-      }
-    } catch (error) {
-      console.log('JSON parse error:', error.message);
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ error: 'Failed to parse JSON: ' + error.message })
-      };
-    }
+    // Log unexpected content type for debugging
+    console.log('Unexpected content type:', event.headers['content-type']);
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error: 'Unsupported content type: ' + event.headers['content-type'] })
+    };
   }
 
-  // Validate name and message
   if (!name || !message) {
     console.log('Missing name or message:', { name, message });
     return {
       statusCode: 400,
-      body: JSON.stringify({ error: 'Missing name or message in form data' })
+      body: JSON.stringify({ error: 'Missing name or message' })
     };
   }
 
-  // Send SMS via email
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -72,9 +51,7 @@ exports.handler = async (event) => {
   };
 
   try {
-    console.log('Sending SMS via email to:', mailOptions.to);
     await transporter.sendMail(mailOptions);
-    console.log('SMS sent successfully');
     return {
       statusCode: 200,
       body: JSON.stringify({ message: 'SMS sent via email' })
