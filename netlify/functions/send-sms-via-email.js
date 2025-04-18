@@ -1,4 +1,4 @@
-const nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer'); 
 
 exports.handler = async (event) => {
   console.log('Function invoked');
