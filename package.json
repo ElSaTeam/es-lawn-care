@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Netlify Functions for ES Lawn Care contact form",
   "dependencies": {
-    "nodemailer": "6.9.13"
+    "nodemailer": "6.9.13",
+    "axios": "^1.7.2"
   },
   "scripts": {
     "start": "echo 'No start script needed for Netlify Functions'"
