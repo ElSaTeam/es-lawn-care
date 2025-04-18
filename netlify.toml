@@ -2,3 +2,7 @@
   publish = "."
   functions = "netlify/functions"
   command = "npm install"
+[[redirects]]
+  from = "/thank-you"
+  to = "/.netlify/functions/send-sms-via-email"
+  status = 200
