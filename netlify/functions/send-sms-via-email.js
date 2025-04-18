@@ -16,7 +16,7 @@ exports.handler = async (event) => {
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: '3365750965@vtext.com',
+    to: '3364806151@vtext.com',
     subject: 'ES Lawn Care Inquiry',
     text: `Inquiry: ${name}, ${message}`
   };
