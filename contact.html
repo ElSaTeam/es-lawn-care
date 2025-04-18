@@ -44,7 +44,7 @@
             <div class="contact-form">
                 <h2>Send Us a Message</h2>
                 <p>We understand that every lawn is unique, which is why we offer customized lawn care plans to suit your specific requirements. From regular maintenance to one-time cleanups, our team ensures your lawn stays healthy and vibrant year-round. We also provide expert advice on lawn care practices, such as proper watering and fertilization, to help you maintain your lawn between our visits. Our goal is to make lawn care hassle-free for you, so you can enjoy your outdoor space without the stress. Contact us today to learn more about our services, discuss your lawn care needs, or get a free quote. We look forward to working with you!</p>
-               <form id="contact-form" action="/thank-you" method="POST" data-netlify="true" name="contact">
+               <form id="contact-form" action="/.netlify/functions/send-sms-via-email" method="POST" name="contact">
                   <input type="hidden" name="form-name" value="contact">
                   <label for="name">Name:</label>
                   <input type="text" id="name" name="name" required>
