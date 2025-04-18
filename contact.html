@@ -44,13 +44,13 @@
             <div class="contact-form">
                 <h2>Send Us a Message</h2>
                 <p>We understand that every lawn is unique, which is why we offer customized lawn care plans to suit your specific requirements. From regular maintenance to one-time cleanups, our team ensures your lawn stays healthy and vibrant year-round. We also provide expert advice on lawn care practices, such as proper watering and fertilization, to help you maintain your lawn between our visits. Our goal is to make lawn care hassle-free for you, so you can enjoy your outdoor space without the stress. Contact us today to learn more about our services, discuss your lawn care needs, or get a free quote. We look forward to working with you!</p>
-               <form id="contact-form" action="/thank-you" method="POST" data-netlify="true" name="contact">
-                  <input type="hidden" name="form-name" value="contact">
-                  <label for="name">Name:</label>
-                  <input type="text" id="name" name="name" required>
-                  <label for="message">Message:</label>
-                  <textarea id="message" name="message" required></textarea>
-                  <button type="submit">Send Message</button>
+                <form id="contact-form" action="/.netlify/functions/send-sms-via-email" method="POST" name="contact">
+                    <input type="hidden" name="form-name" value="contact">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" required></textarea>
+                    <button type="submit">Send Message</button>
                 </form>
             </div>
         </div>
@@ -89,12 +89,15 @@
             body: new FormData(form),
             headers: { 'Accept': 'application/json' }
         }).then(response => {
+            console.log('Fetch response status:', response.status);
+            response.json().then(data => console.log('Fetch response data:', data));
             if (response.ok) {
                 window.location.href = 'https://eslawncarenc.com/thank-you.html';
             } else {
                 alert('There was an error submitting the form. Please try again.');
             }
         }).catch(error => {
+            console.error('Fetch error:', error);
             alert('There was an error submitting the form. Please try again.');
         });
     });
