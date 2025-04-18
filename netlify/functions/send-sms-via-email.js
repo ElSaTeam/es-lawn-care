@@ -30,8 +30,8 @@ exports.handler = async (event) => {
     try {
       const formData = JSON.parse(event.body);
       console.log('Parsed formData:', JSON.stringify(formData, null, 2));
-      name = formData.payload?.data?.name || formData.name;
-      message = formData.payload?.data?.message || formData.message;
+      name = formData.payload?.data?.name || formData.name || formData.data?.name;
+      message = formData.payload?.data?.message || formData.message || formData.data?.message;
     } catch (error) {
       console.log('JSON parse error:', error.message);
       return {
@@ -55,10 +55,10 @@ exports.handler = async (event) => {
       }
     }
   } else {
-    console.log('Unexpected content type:', event.headers['content-type']);
+    console.log('Unexpected content type:', event.headers['content-type'] || 'none');
     return {
       statusCode: 400,
-      body: JSON.stringify({ error: 'Unsupported content type: ' + event.headers['content-type'] })
+      body: JSON.stringify({ error: 'Unsupported content type' })
     };
   }
 
