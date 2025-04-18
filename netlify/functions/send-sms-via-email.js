@@ -1,38 +1,10 @@
 const nodemailer = require('nodemailer');
 
 exports.handler = async (event) => {
-  console.log('Event body:', event.body);
-  console.log('Content-Type:', event.headers['content-type']);
+  console.log('Function invoked');
 
-  if (!event.body) {
-    console.log('No event body received');
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ error: 'No event body received' })
-    };
-  }
-
-  let name, message;
-
-  if (event.headers['content-type']?.includes('application/x-www-form-urlencoded')) {
-    const params = new URLSearchParams(event.body);
-    name = params.get('name');
-    message = params.get('message');
-  } else {
-    console.log('Unexpected content type:', event.headers['content-type']);
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ error: 'Unsupported content type: ' + event.headers['content-type'] })
-    };
-  }
-
-  if (!name || !message) {
-    console.log('Missing name or message:', { name, message });
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ error: 'Missing name or message' })
-    };
-  }
+  const name = 'Test User';
+  const message = 'Testing SMS';
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
