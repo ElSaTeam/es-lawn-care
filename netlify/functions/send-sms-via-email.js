@@ -22,7 +22,6 @@ exports.handler = async (event) => {
     };
   }
 
-  // Decode Base64-encoded body if necessary
   const body = event.isBase64Encoded ? Buffer.from(event.body, 'base64').toString('utf8') : event.body;
   console.log('Decoded event body:', body);
 
@@ -35,12 +34,12 @@ exports.handler = async (event) => {
       console.log('Multipart parts:', parts);
       for (const part of parts) {
         if (part.includes('name="name"')) {
-          const value = part.split('\r\n\r\n')[1]?.split('\r\n')[0]?.trim();
-          name = value || 'Unknown';
+          const match = part.match(/name="name"\r\n\r\n([\s\S]*?)(?=\r\n|$)/);
+          name = match && match[1] ? match[1].trim() : 'Unknown';
         }
         if (part.includes('name="message"')) {
-          const value = part.split('\r\n\r\n')[1]?.split('\r\n')[0]?.trim();
-          message = value || 'No message';
+          const match = part.match(/name="message"\r\n\r\n([\s\S]*?)(?=\r\n|$)/);
+          message = match && match[1] ? match[1].trim() : 'No message';
         }
       }
     } catch (error) {
@@ -95,14 +94,14 @@ exports.handler = async (event) => {
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: '3364806151@vtext.com',
+    to: ['3364806151@vtext.com', '3365750965@tmomail.net'], // Updated for T-Mobile
     subject: 'ES Lawn Care Inquiry',
     text: `Inquiry: ${name}, ${message}`
   };
 
   try {
     await transporter.sendMail(mailOptions);
-    console.log('SMS sent successfully');
+    console.log('SMS sent successfully to both phones');
     return {
       statusCode: 200,
       body: JSON.stringify({ message: 'SMS sent via email' })
