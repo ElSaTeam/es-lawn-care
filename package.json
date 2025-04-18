@@ -1,2 +1,13 @@
-name = formData.payload?.data?.name || formData.name || formData.data?.name;
-message = formData.payload?.data?.message || formData.message || formData.data?.message;
+{
+  "name": "es-lawn-care",
+  "version": "1.0.0",
+  "description": "Netlify Functions for ES Lawn Care contact form",
+  "dependencies": {
+    "nodemailer": "6.9.13"
+  },
+  "scripts": {
+    "start": "echo 'No start script needed for Netlify Functions'"
+  },
+  "author": "ES Lawn Care",
+  "license": "MIT"
+}
