@@ -4,7 +4,7 @@ exports.handler = async (event) => {
   console.log('Full event:', JSON.stringify(event, null, 2));
   console.log('HTTP Method:', event.httpMethod);
   console.log('Content-Type:', event.headers['content-type']);
-  console.log('Event body:', event.body);
+  console.log('Event body (raw):', event.body);
 
   if (event.httpMethod !== 'POST') {
     console.log('Invalid HTTP method:', event.httpMethod);
@@ -22,26 +22,41 @@ exports.handler = async (event) => {
     };
   }
 
+  // Decode Base64-encoded body if necessary
+  const body = event.isBase64Encoded ? Buffer.from(event.body, 'base64').toString('utf8') : event.body;
+  console.log('Decoded event body:', body);
+
   let name, message;
 
   if (event.headers['content-type']?.includes('multipart/form-data')) {
-  const boundary = event.headers['content-type'].match(/boundary=(.+)/)[1];
-  const parts = event.body.split(`--${boundary}`);
-  for (const part of parts) {
-    if (part.includes('name="name"')) {
-      name = part.split('\r\n\r\n')[1]?.split('\r\n')[0]?.trim() || 'Unknown';
+    try {
+      const boundary = event.headers['content-type'].match(/boundary=(.+)/)[1];
+      const parts = body.split(`--${boundary}`);
+      console.log('Multipart parts:', parts);
+      for (const part of parts) {
+        if (part.includes('name="name"')) {
+          const value = part.split('\r\n\r\n')[1]?.split('\r\n')[0]?.trim();
+          name = value || 'Unknown';
+        }
+        if (part.includes('name="message"')) {
+          const value = part.split('\r\n\r\n')[1]?.split('\r\n')[0]?.trim();
+          message = value || 'No message';
+        }
+      }
+    } catch (error) {
+      console.log('Multipart parse error:', error.message);
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: 'Failed to parse multipart form data: ' + error.message })
+      };
     }
-    if (part.includes('name="message"')) {
-      message = part.split('\r\n\r\n')[1]?.split('\r\n')[0]?.trim() || 'No message';
-    }
-  }
-} else if (event.headers['content-type']?.includes('application/x-www-form-urlencoded')) {
-    const params = new URLSearchParams(event.body);
+  } else if (event.headers['content-type']?.includes('application/x-www-form-urlencoded')) {
+    const params = new URLSearchParams(body);
     name = params.get('name') || 'Unknown';
     message = params.get('message') || 'No message';
   } else if (event.headers['content-type']?.includes('application/json')) {
     try {
-      const formData = JSON.parse(event.body);
+      const formData = JSON.parse(body);
       console.log('Parsed formData:', JSON.stringify(formData, null, 2));
       name = formData.name || formData.payload?.data?.name || formData.data?.name || 'Unknown';
       message = formData.message || formData.payload?.data?.message || formData.data?.message || 'No message';
@@ -59,6 +74,8 @@ exports.handler = async (event) => {
       body: JSON.stringify({ error: 'Unsupported content type' })
     };
   }
+
+  console.log('Extracted values:', { name, message });
 
   if (!name || !message) {
     console.log('Missing name or message:', { name, message });
