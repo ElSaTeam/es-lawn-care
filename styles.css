@@ -297,140 +297,6 @@ cite {
     font-weight: 600; 
 }
 
-/* Contact */
-.contact-container { 
-    display: flex; 
-    justify-content: space-between; 
-    gap: 30px; 
-    max-width: 1200px; 
-    margin: 0 auto; 
-}
-.contact-info, .contact-form { 
-    flex: 1; 
-    padding: 20px; 
-}
-.contact-info h2 {
-    text-align: left;
-    padding-left: 30px;
-}
-.contact-info p { 
-    display: flex; 
-    align-items: center; 
-    gap: 10px; 
-}
-.contact-info i { 
-    color: #2E7D32; 
-    width: 20px; 
-    display: inline-flex; 
-    justify-content: center; 
-}
-.contact-info a, .contact-info a span.__cf_email__ {
-    color: #C8E6C9;
-    text-decoration: none;
-}
-.contact-info a:hover {
-    color: #FFF;
-}
-.contact-form label {
-    color: #C8E6C9;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-    font-size: 1.2em;
-    display: block;
-    margin-bottom: 5px;
-}
-.contact-form label span {
-    color: #C8E6C9;
-}
-#contact-form input, 
-#contact-form textarea { 
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background: rgba(255,255,255,0.9);
-    font-size: 16px; /* Increase font size for better readability */
-    box-sizing: border-box; /* Ensure padding is included in width */
-}
-#contact-form textarea {
-    height: 150px;
-    resize: vertical;
-}
-.contact-form button { 
-    width: 100%; 
-    padding: 12px; 
-    background: #2E7D32; 
-    color: #FFF; 
-    border: none; 
-    border-radius: 5px; 
-    cursor: pointer; 
-    transition: background .3s; 
-}
-.contact-form button:hover { 
-    background: #1B5E20; 
-}
-.g-recaptcha {
-    margin: 15px auto;
-    display: flex;
-    justify-content: center;
-}
-
-/* Portfolio */
-.job-gallery { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-    gap: 20px; 
-    padding: 20px; 
-    justify-items: center; 
-}
-.job-gallery img { 
-    width: 200px; 
-    height: 150px; 
-    object-fit: cover; 
-    border-radius: 8px; 
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
-    transition: transform .3s, box-shadow .3s; 
-    position: relative; 
-    cursor: pointer;
-}
-.job-gallery img:hover { 
-    transform: scale(1.05); 
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3); 
-}
-.job-gallery img:hover::after { 
-    content: ''; 
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
-    background: rgba(0,0,0,0.3);
-    border-radius: 8px; 
-    transition: background .3s; 
-}
-.before-after { 
-    display: flex; 
-    gap: 10px; 
-    justify-content: center; 
-    align-items: center; 
-    flex-wrap: wrap; 
-}
-.before-after-label { 
-    position: relative; 
-    text-align: center; 
-}
-.before-after-label::before { 
-    content: attr(data-label); 
-    position: absolute; 
-    top: 5px; 
-    left: 50%; 
-    transform: translateX(-50%); 
-    background: rgba(0,0,0,0.6); 
-    color: #FFF; 
-    padding: 2px 8px; 
-    border-radius: 3px; 
-    font-size: 0.9em; 
-}
-
 /* Lightbox Styles */
 .lightbox {
     display: none;
@@ -591,4 +457,16 @@ footer a:hover {
         font-size: 30px;
         padding: 10px;
     }
+}
+
+/* Form Field Improvements */
+#contact-form input,
+#contact-form textarea {
+    font-size: 16px; /* Increased font size for better readability */
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+#contact-form textarea {
+    height: 150px;
 }
