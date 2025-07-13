@@ -462,7 +462,7 @@ footer a:hover {
 /* Form Field Improvements */
 #contact-form input,
 #contact-form textarea {
-    font-size: 16px; /* Increased font size for better readability */
+    font-size: 18px; /* Larger font size */
     padding: 8px;
     width: 100%;
     box-sizing: border-box;
