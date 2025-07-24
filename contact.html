@@ -5,27 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=2.0">
     <meta name="description" content="Contact ES Lawn Care for top lawn care services in Winston-Salem, NC. Use our form or call us to schedule your free consultation today!">
     <title>Contact ES Lawn Care | Winston-Salem, NC</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" defer>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <div class="header-nav-container">
         <header>
-            <img src="ES Lawn Care Logo.webp" alt="ES Lawn Care Logo" width="300" height="100">
+            <img src="/ES Lawn Care Logo.webp" alt="ES Lawn Care Logo" width="300" height="100">
         </header>
         <nav role="navigation">
             <input type="checkbox" id="menu-toggle" class="menu-toggle">
             <label for="menu-toggle" class="hamburger"></label>
             <div class="nav-links">
-                <a href="index.html" data-debug="Home link">Home</a>
-                <a href="lawn-maintenance.html" data-debug="Lawn Maintenance link">Lawn Maintenance</a>
-                <a href="portfolio.html" data-debug="Our Work link">Our Work</a>
-                <a href="about.html" data-debug="About Us link">About Us</a>
-                <a href="testimonials.html" data-debug="Testimonials link">Testimonials</a>
-                <a href="contact.html" data-debug="Contact link">Contact</a>
+                <a href="/index.html" data-debug="Home link">Home</a>
+                <a href="/lawn-maintenance.html" data-debug="Lawn Maintenance link">Lawn Maintenance</a>
+                <a href="/portfolio.html" data-debug="Our Work link">Our Work</a>
+                <a href="/about.html" data-debug="About Us link">About Us</a>
+                <a href="/testimonials.html" data-debug="Testimonials link">Testimonials</a>
+                <a href="/contact.html" data-debug="Contact link">Contact</a>
             </div>
             <noscript>
                 <p style="color: #C8E6C9; text-align: center; padding: 10px;">JavaScript is disabled. The menu should still work.</p>
@@ -55,10 +55,10 @@
                 </form>
             </div>
         </div>
-        <a href="contact.html" class="cta-button">Get a Free Quote</a>
+        <a href="/contact.html" class="cta-button">Get a Free Quote</a>
     </section>
     <footer>
-        <p>© 2025 ES Lawn Care LLP. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
+        <p>© 2025 ES Lawn Care LLP. All rights reserved. | <a href="/privacy-policy.html">Privacy Policy</a> | <a href="/terms-of-service.html">Terms of Service</a></p>
     </footer>
     <script defer src="/scripts.js"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -67,9 +67,9 @@
         const headerNav = document.querySelector('.header-nav-container');
         const sections = document.querySelectorAll('section');
         if (headerNav && sections.length > 0) {
-            const isHeight = headerNav.offsetHeight;
+            const headerHeight = headerNav.offsetHeight;
             sections.forEach(section => {
-                section.style.marginTop = `${isHeight}px`;
+                section.style.marginTop = `${headerHeight}px`;
             });
         }
     });
@@ -101,7 +101,7 @@
             console.log('Fetch response status:', response.status);
             response.json().then(data => console.log('Fetch response data:', data));
             if (response.ok) {
-                window.location.href = 'https://eslawncarenc.com/thank-you.html';
+                window.location.href = '/thank-you.html';
             } else {
                 alert('There was an error submitting the form. Please try again.');
             }
