@@ -6,15 +6,14 @@
     "nodemailer": "6.9.13",
     "axios": "^1.7.2",
     "busboy": "^1.6.0",
-    "querystring": "^0.2.1"  // Included for URL-encoded parsing
+    "querystring": "^0.2.1"
   },
   "scripts": {
-    "start": "echo 'No start script needed for Netlify Functions'",
-    "build": "echo 'Build complete'"  // Optional placeholder
+    "start": "echo 'No start script needed for Netlify Functions'"
   },
   "author": "ES Lawn Care",
   "license": "MIT",
   "engines": {
-    "node": "18.x"  // Matches Netlify default
+    "node": "18.x"
   }
 }
