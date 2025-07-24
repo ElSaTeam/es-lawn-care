@@ -48,6 +48,10 @@
                     <input type="hidden" name="form-name" value="contact">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required> <!-- Added back for completeness -->
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone"> <!-- Optional, for SMS confirmation -->
                     <label for="message">Message:</label>
                     <textarea id="message" name="message" required></textarea>
                     <div class="g-recaptcha" data-sitekey="6LdG2RorAAAAAIiLSRTk-sEVew2JNwg-9Xdhchi2"></div>
@@ -101,7 +105,7 @@
             console.log('Fetch response status:', response.status);
             response.json().then(data => console.log('Fetch response data:', data));
             if (response.ok) {
-                window.location.href = 'https://eslawncarenc.com/thank-you.html';
+                window.location.href = '/thank-you.html';
             } else {
                 alert('There was an error submitting the form. Please try again.');
             }
