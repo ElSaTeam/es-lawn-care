@@ -38,8 +38,8 @@ body > * {
     z-index: 2; 
     flex: 0 1 auto; /* Allow content to grow but not shrink */
 }
-body > main {
-    flex: 1 0 auto; /* Ensure main takes remaining space */
+body > section {
+    flex: 1 0 auto; /* Ensure section takes remaining space */
 }
 
 /* Ensure no default blue links */
@@ -127,7 +127,7 @@ nav {
 }
 
 /* Sections */
-main { 
+section { 
     padding: 30px 20px; 
     margin: 20px auto; 
     max-width: 1200px; 
@@ -135,7 +135,7 @@ main {
     margin-top: 110px;
 }
 @media (max-width: 768px) {
-    main {
+    section {
         margin-top: 90px;
     }
 }
@@ -191,80 +191,6 @@ cite {
     margin-top: 10px; 
     color: #C8E6C9 !important; 
     text-shadow: 1px 1px 2px rgba(0,0,0,0.8); 
-}
-
-/* Contact Specific */
-.contact-container {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-.contact-info, .message-section {
-    flex: 1;
-    max-width: 45%;
-    min-width: 300px;
-}
-.contact-info p, .message-section p {
-    text-align: left;
-}
-.message-section form {
-    background: rgba(255, 255, 255, 0.9); 
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    margin: 20px auto;
-}
-.form-group {
-    margin-bottom: 15px;
-}
-.form-group input, .form-group textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 18px;
-}
-.form-group input[name="name"], .form-group input[name="last-name"] {
-    display: inline-block;
-    width: calc(50% - 5px);
-}
-.form-group input[name="last-name"] {
-    margin-left: 10px;
-}
-.form-group textarea {
-    height: 100px;
-}
-button[type="submit"] {
-    background-color: #28a745; /* Green like "Get a Free Quote" */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 10px;
-}
-button[type="submit"]:hover {
-    background-color: #218838;
-}
-.get-quote-btn {
-    display: inline-block;
-    padding: 12px 25px;
-    background: #28a745; /* Match submit button */
-    color: #FFF;
-    text-decoration: none;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    font-weight: 700;
-    transition: background .3s;
-    margin: 20px auto;
-}
-.get-quote-btn:hover {
-    background: #218838;
 }
 
 /* Testimonials */
@@ -511,7 +437,7 @@ footer a:hover {
     nav .nav-links a:last-child {
         border-bottom: none;
     }
-    main { 
+    section { 
         padding: 40px 15px; 
     } 
     .contact-container { 
@@ -534,13 +460,13 @@ footer a:hover {
 }
 
 /* Form Field Improvements */
-.message-section form input,
-.message-section form textarea {
+#contact-form input,
+#contact-form textarea {
     font-size: 18px; /* Larger font size */
     padding: 8px;
     width: 100%;
     box-sizing: border-box;
 }
-.message-section form textarea {
+#contact-form textarea {
     height: 150px;
 }
