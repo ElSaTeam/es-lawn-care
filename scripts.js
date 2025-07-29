@@ -40,12 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Scroll to form on "Get a Free Quote" click
+    // Scroll to message section on "Get a Free Quote" click
     const quoteBtn = document.querySelector('.get-quote-btn');
     if (quoteBtn) {
         quoteBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            document.querySelector('.contact-form').scrollIntoView({ behavior: 'smooth' });
+            document.querySelector('.message-section').scrollIntoView({ behavior: 'smooth' });
         });
     }
 
@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', (e) => {
             console.log(`Clicked: ${link.getAttribute('data-debug')}, href: ${link.getAttribute('href')}`);
+            // Close the menu after clicking a link (mobile)
             const menuToggle = document.querySelector('#menu-toggle');
             const navLinks = document.querySelector('.nav-links');
             if (menuToggle && navLinks) {
