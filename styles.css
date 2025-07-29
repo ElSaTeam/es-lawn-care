@@ -462,21 +462,21 @@ footer a:hover {
 /* Form Field Improvements */
 #contact-form input,
 #contact-form textarea {
-    font-size: 16px; /* Slightly smaller for compact look */
-    padding: 6px 10px; /* Reduced padding */
+    font-size: 14px; /* Smaller for compact look */
+    padding: 5px 8px; /* Reduced padding */
     width: 100%;
-    max-width: 300px; /* Match second picture's narrower fields */
+    max-width: 250px; /* Narrower fields */
     box-sizing: border-box;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 #contact-form textarea {
-    height: 100px; /* Reduced height for compact look */
+    height: 80px; /* Reduced height */
 }
 
-/* Style the Send Message button to match cta-button */
+/* Style the Submit button to match cta-button */
 #contact-form button[type="submit"] {
     display: inline-block;
-    padding: 10px 20px; /* Slightly smaller padding */
+    padding: 8px 15px; /* Smaller padding for button */
     background: #2E7D32;
     color: #FFF;
     border: none;
@@ -485,8 +485,7 @@ footer a:hover {
     font-weight: 700;
     transition: background .3s;
     cursor: pointer;
-    width: auto; /* Remove full width for button-like appearance */
-    margin-top: 10px;
+    width: auto; /* Button size, not full width */
 }
 #contact-form button[type="submit"]:hover {
     background: #1B5E20;
