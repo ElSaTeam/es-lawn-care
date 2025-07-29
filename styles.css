@@ -460,23 +460,29 @@ footer a:hover {
 }
 
 /* Form Field Improvements */
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 #contact-form input,
 #contact-form textarea {
-    font-size: 14px; /* Smaller for compact look */
-    padding: 5px 8px; /* Reduced padding */
-    width: 100%;
-    max-width: 250px; /* Narrower fields */
+    font-size: 16px; /* Readable size */
+    padding: 5px; /* Minimal padding */
+    width: 200px; /* Narrower fields */
     box-sizing: border-box;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 #contact-form textarea {
-    height: 80px; /* Reduced height */
+    height: 80px; /* Compact height */
 }
 
 /* Style the Submit button to match cta-button */
 #contact-form button[type="submit"] {
     display: inline-block;
-    padding: 8px 15px; /* Smaller padding for button */
+    padding: 8px 15px; /* Compact button */
     background: #2E7D32;
     color: #FFF;
     border: none;
@@ -485,7 +491,8 @@ footer a:hover {
     font-weight: 700;
     transition: background .3s;
     cursor: pointer;
-    width: auto; /* Button size, not full width */
+    width: auto; /* Button size */
+    margin-top: 10px;
 }
 #contact-form button[type="submit"]:hover {
     background: #1B5E20;
