@@ -38,8 +38,8 @@ body > * {
     z-index: 2; 
     flex: 0 1 auto; /* Allow content to grow but not shrink */
 }
-body > section {
-    flex: 1 0 auto; /* Ensure section takes remaining space */
+body > main {
+    flex: 1 0 auto; /* Ensure main takes remaining space */
 }
 
 /* Ensure no default blue links */
@@ -126,94 +126,8 @@ nav {
     color: #C8E6C9; 
 }
 
-/* Contact Form */
-.contact-form {
-    text-align: center;
-    padding: 30px 20px;
-    margin-top: 110px;
-    max-width: 1200px;
-    margin: 20px auto;
-}
-.contact-info, .message-section {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-.contact-form h1 {
-    font-size: 2.5em;
-    margin-bottom: 15px;
-    color: #FFF;
-    font-weight: 700;
-}
-.contact-form h2 {
-    font-size: 2em;
-    margin: 20px 0 10px;
-    color: #FFF;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-}
-.contact-form p {
-    max-width: 800px;
-    margin: 0 auto 20px;
-    color: #C8E6C9 !important;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-    font-size: 1.2em;
-    text-align: left;
-}
-form {
-    display: inline-block;
-    text-align: left;
-}
-.form-group {
-    margin-bottom: 15px;
-}
-.form-group input, .form-group textarea {
-    font-size: 18px;
-    padding: 8px;
-    width: 100%;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-.form-group textarea {
-    height: 150px;
-}
-button[type="submit"] {
-    background-color: #C0C0C0; /* Silver color to match original "Send Message" */
-    color: #333;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 10px;
-}
-button[type="submit"]:hover {
-    background-color: #B0B0B0;
-}
-.get-quote-btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 25px;
-    background: #28a745;
-    color: #FFF;
-    text-decoration: none;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    font-weight: 700;
-    transition: background .3s;
-}
-.get-quote-btn:hover {
-    background: #218838;
-    color: #FFF;
-}
-
 /* Sections */
-section { 
+main { 
     padding: 30px 20px; 
     margin: 20px auto; 
     max-width: 1200px; 
@@ -221,7 +135,7 @@ section {
     margin-top: 110px;
 }
 @media (max-width: 768px) {
-    section {
+    main {
         margin-top: 90px;
     }
 }
@@ -277,6 +191,80 @@ cite {
     margin-top: 10px; 
     color: #C8E6C9 !important; 
     text-shadow: 1px 1px 2px rgba(0,0,0,0.8); 
+}
+
+/* Contact Specific */
+.contact-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.contact-info, .message-section {
+    flex: 1;
+    max-width: 45%;
+    min-width: 300px;
+}
+.contact-info p, .message-section p {
+    text-align: left;
+}
+.message-section form {
+    background: rgba(255, 255, 255, 0.9); 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 18px;
+}
+.form-group input[name="name"], .form-group input[name="last-name"] {
+    display: inline-block;
+    width: calc(50% - 5px);
+}
+.form-group input[name="last-name"] {
+    margin-left: 10px;
+}
+.form-group textarea {
+    height: 100px;
+}
+button[type="submit"] {
+    background-color: #28a745; /* Green like "Get a Free Quote" */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+.get-quote-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #28a745; /* Match submit button */
+    color: #FFF;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    font-weight: 700;
+    transition: background .3s;
+    margin: 20px auto;
+}
+.get-quote-btn:hover {
+    background: #218838;
 }
 
 /* Testimonials */
@@ -442,6 +430,22 @@ cite {
     text-align: center;
     margin: 20px 0;
 }
+.cta-button { 
+    display: inline-block; 
+    padding: 12px 25px; 
+    background: #2E7D32; 
+    color: #FFF; 
+    text-decoration: none; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
+    font-weight: 700; 
+    transition: background .3s; 
+    margin: 0 auto; 
+}
+.cta-button:hover { 
+    background: #1B5E20; 
+    color: #FFF; 
+}
 
 /* Legal Pages */
 #terms-of-service, #privacy-policy { 
@@ -507,7 +511,7 @@ footer a:hover {
     nav .nav-links a:last-child {
         border-bottom: none;
     }
-    section { 
+    main { 
         padding: 40px 15px; 
     } 
     .contact-container { 
@@ -527,4 +531,16 @@ footer a:hover {
         font-size: 30px;
         padding: 10px;
     }
+}
+
+/* Form Field Improvements */
+.message-section form input,
+.message-section form textarea {
+    font-size: 18px; /* Larger font size */
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.message-section form textarea {
+    height: 150px;
 }
