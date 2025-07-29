@@ -165,39 +165,35 @@ nav {
     text-align: left;
 }
 form {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
+    display: inline-block;
+    text-align: left;
 }
 .form-group {
     margin-bottom: 15px;
 }
 .form-group input, .form-group textarea {
+    font-size: 18px;
+    padding: 8px;
     width: 100%;
-    padding: 10px;
-    margin: 5px 0;
+    box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 18px;
 }
 .form-group textarea {
     height: 150px;
 }
 button[type="submit"] {
-    background-color: #28a745;
-    color: white;
+    background-color: #C0C0C0; /* Silver color to match original "Send Message" */
+    color: #333;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     width: 100%;
+    margin-top: 10px;
 }
 button[type="submit"]:hover {
-    background-color: #218838;
+    background-color: #B0B0B0;
 }
 .get-quote-btn {
     display: inline-block;
