@@ -470,3 +470,21 @@ footer a:hover {
 #contact-form textarea {
     height: 150px;
 }
+
+/* Style the Send Message button to match cta-button */
+#contact-form button[type="submit"] {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #2E7D32;
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    font-weight: 700;
+    transition: background .3s;
+    cursor: pointer;
+    width: 100%;
+}
+#contact-form button[type="submit"]:hover {
+    background: #1B5E20;
+}
