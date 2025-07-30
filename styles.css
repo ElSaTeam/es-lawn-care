@@ -467,16 +467,16 @@ footer a:hover {
 }
 #contact-form input,
 #contact-form textarea {
-    font-size: 1.2em; /* Match body text size */
-    padding: 8px 12px; /* Balanced padding */
-    width: 300px; /* Wider fields */
+    font-size: 16px; /* Readable size */
+    padding: 6px 10px; /* Balanced padding */
+    width: 250px; /* Wider fields to match second website */
     box-sizing: border-box;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 #contact-form textarea {
-    height: 120px; /* Increased height */
+    height: 100px; /* Increased height for wider look */
 }
 
 /* Style the Submit button to match cta-button */
