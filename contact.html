@@ -9,6 +9,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" defer>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "ES Lawn Care",
+      "telephone": "(336) 575-0965",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Winston-Salem",
+        "addressRegion": "NC"
+      },
+      "description": "Top lawn care services in Winston-Salem, NC, including mowing, fertilizing, and landscaping."
+    }
+    </script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -37,8 +51,8 @@
         <div class="contact-container">
             <div class="contact-info">
                 <h2>Contact Information</h2>
-                <p><i class="fas fa-phone"></i> (336) 575-0965 / (336) 480-6151</p>
-                <p><i class="fas fa-clock"></i> Mon-Fri: 8:00 AM - 5:30 PM</p>
+                <p><i class="fas fa-phone" aria-hidden="true"></i> (336) 575-0965 / (336) 480-6151</p>
+                <p><i class="fas fa-clock" aria-hidden="true"></i> Mon-Fri: 8:00 AM - 5:30 PM</p>
                 <p>Ready to transform your lawn? ES Lawn Care provides top-quality lawn care services in Winston-Salem, NC, including mowing, fertilizing, landscaping, and seasonal cleanups. Whether you’re a homeowner or a business owner, we’re here to help you achieve a lush, green lawn that enhances your property’s curb appeal. Our family-owned business has been serving the Winston-Salem community since 2019, and we’re committed to delivering exceptional service tailored to your needs.</p>
             </div>
             <div class="contact-form">
@@ -48,15 +62,14 @@
                     <input type="hidden" name="form-name" value="contact">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" required>
-                    <label for="phone">Phone Number:</label>
-                    <input type="tel" id="phone" name="phone" required>
                     <label for="message">Message:</label>
                     <textarea id="message" name="message" required></textarea>
                     <div class="g-recaptcha" data-sitekey="6LdG2RorAAAAAIiLSRTk-sEVew2JNwg-9Xdhchi2"></div>
-                    <button type="submit" class="cta-button">Submit</button>
+                    <button type="submit">Send Message</button>
                 </form>
             </div>
         </div>
+        <a href="/contact.html" class="cta-button">Get a Free Quote</a>
     </section>
     <footer>
         <p>© 2025 ES Lawn Care LLP. All rights reserved. | <a href="/privacy-policy.html">Privacy Policy</a> | <a href="/terms-of-service.html">Terms of Service</a></p>
@@ -75,7 +88,7 @@
         }
     });
     window.addEventListener('resize', function() {
-        const headerNav = document.querySelector('.header-nav-container');
+        const headerNav = document.query selector('.header-nav-container');
         const sections = document.querySelectorAll('section');
         if (headerNav && sections.length > 0) {
             const headerHeight = headerNav.offsetHeight;
