@@ -465,18 +465,27 @@ footer a:hover {
     flex-direction: column;
     align-items: center;
 }
+#contact-form label {
+    font-size: 1.2em;
+    color: #C8E6C9;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    margin-bottom: 4px;
+}
 #contact-form input,
 #contact-form textarea {
-    font-size: 16px; /* Readable size */
-    padding: 6px 10px; /* Balanced padding */
-    width: 250px; /* Wider fields to match second website */
+    font-size: 1.2em; /* Match body text size */
+    color: #C8E6C9;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    padding: 8px 12px; /* More padding for wider feel */
+    width: 300px; /* Wider fields */
     box-sizing: border-box;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.9); /* Slight opacity for contrast */
 }
 #contact-form textarea {
-    height: 100px; /* Increased height for wider look */
+    height: 120px; /* Increased height */
 }
 
 /* Style the Submit button to match cta-button */
