@@ -468,21 +468,21 @@ footer a:hover {
 #contact-form input,
 #contact-form textarea {
     font-size: 16px; /* Readable size */
-    padding: 5px; /* Minimal padding */
-    width: 200px; /* Narrower fields */
+    padding: 6px 10px; /* Balanced padding */
+    width: 250px; /* Wider fields to match second website */
     box-sizing: border-box;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 #contact-form textarea {
-    height: 80px; /* Compact height */
+    height: 100px; /* Increased height for wider look */
 }
 
 /* Style the Submit button to match cta-button */
 #contact-form button[type="submit"] {
     display: inline-block;
-    padding: 8px 15px; /* Compact button */
+    padding: 10px 20px; /* Balanced button size */
     background: #2E7D32;
     color: #FFF;
     border: none;
