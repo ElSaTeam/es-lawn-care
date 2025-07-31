@@ -4,7 +4,7 @@ const querystring = require('querystring');
 const Busboy = require('busboy');
 
 exports.handler = async (event) => {
-  console.log('Full event:', JSON.stringify(event, null, 2));
+  console.log('Full event:', JSON.stringify(event, null, 2)); // Keep for debugging, but sanitize in production
   console.log('HTTP Method:', event.httpMethod);
   console.log('Content-Type:', event.headers['content-type']);
   console.log('Event body (raw):', event.body);
@@ -64,9 +64,24 @@ exports.handler = async (event) => {
     };
   }
 
-  console.log('Parsed formData:', JSON.stringify(formData, null, 2));
+  // Sanitize logs to avoid PII exposure
+  console.log('Parsed formData (sanitized):', JSON.stringify({
+    name: formData.name ? '[REDACTED]' : 'Unknown',
+    email: formData.email ? '[REDACTED]' : 'No email',
+    phone: formData.phone ? '[REDACTED]' : 'No phone',
+    message: formData.message ? '[REDACTED]' : 'No message'
+  }, null, 2));
 
-  const { name = 'Unknown', email = 'No email', phone = 'No phone', message = 'No message', 'g-recaptcha-response': recaptchaResponse } = formData;
+  const { name = 'Unknown', email = 'No email', phone = 'No phone', message = 'No message', 'g-recaptcha-response': recaptchaResponse, honeypot = '' } = formData;
+
+  // Honeypot check: If filled (by bots), reject
+  if (honeypot) {
+    console.log('Honeypot triggered');
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error: 'Invalid submission' })
+    };
+  }
 
   if (!name || !message) {
     console.log('Missing name or message:', { name, message });
@@ -118,26 +133,38 @@ exports.handler = async (event) => {
     }
   });
 
-  const mailOptions = {
+  const inquiryText = `Inquiry from ${name} (${email}, ${phone}): ${message}`;
+
+  const mailOptionsToOwner = {
     from: process.env.EMAIL_USER,
     to: ['3364806151@vtext.com', '3365750965@tmomail.net'], // Verizon and T-Mobile gateways
     subject: 'ES Lawn Care Inquiry',
-    text: `Inquiry from ${name} (${email}, ${phone}): ${message}`
+    text: inquiryText
+  };
+
+  const mailOptionsToUser = {
+    from: process.env.EMAIL_USER,
+    to: email,
+    subject: 'Thank You for Your Inquiry - ES Lawn Care',
+    text: `Hi ${name},\n\nThank you for reaching out! We've received your message: "${message}". We'll get back to you soon.\n\nBest,\nES Lawn Care Team`
   };
 
   try {
-    await transporter.sendMail(mailOptions);
-    console.log('SMS sent successfully to both phones');
+    await transporter.sendMail(mailOptionsToOwner);
+    if (email !== 'No email') {
+      await transporter.sendMail(mailOptionsToUser);
+    }
+    console.log('SMS and confirmation sent successfully');
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: 'SMS sent via email' })
+      headers: { 'Location': '/thank-you.html' }, // Redirect to thank-you page
+      body: JSON.stringify({ message: 'Inquiry sent successfully' })
     };
   } catch (error) {
-    console.log('Failed to send SMS:', error.message);
-    // Fallback: Log to Netlify Functions log for manual review
+    console.log('Failed to send inquiry:', error.message);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to send SMS: ' + error.message })
+      body: JSON.stringify({ error: 'Failed to send inquiry: ' + error.message })
     };
   }
 };
