@@ -6,9 +6,36 @@
     <meta name="description" content="Expert lawn care in Winston-Salem, NC. ES Lawn Care offers mowing, landscaping, and maintenance for homes and businesses. Get a free quote!">
     <title>Lawn Care in Winston-Salem, NC | ES Lawn Care</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" defer>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" rel="preconnect">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" defer rel="preload">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="preload" href="ES Lawn Care Logo.webp" as="image">
+    <link rel="preload" href="pristine-lawn.webp" as="image">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="ES Lawn Care - Winston-Salem Lawn Services">
+    <meta property="og:description" content="Transform your lawn with expert mowing, landscaping, and maintenance. Free quotes for Winston-Salem residents!">
+    <meta property="og:image" content="https://eslawncarenc.com/ES Lawn Care Logo.webp">
+    <meta property="og:url" content="https://eslawncarenc.com">
+    <!-- Local Business Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "ES Lawn Care",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Winston-Salem",
+        "addressRegion": "NC"
+      },
+      "telephone": "(336) 575-0965",
+      "url": "https://eslawncarenc.com",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "50"
+      }
+    }
+    </script>
     <script async src="scripts.js"></script>
     <!-- Optimize images for faster mobile load time (e.g., compress using TinyPNG) -->
 </head>
@@ -16,7 +43,7 @@
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <div class="header-nav-container">
         <header>
-            <img src="ES Lawn Care Logo.webp" alt="ES Lawn Care Logo" width="300" height="100">
+            <img src="ES Lawn Care Logo.webp" alt="ES Lawn Care Logo" width="300" height="100" loading="lazy">
         </header>
         <nav role="navigation">
             <input type="checkbox" id="menu-toggle" class="menu-toggle">
@@ -39,7 +66,7 @@
             <h1 class="fade-in">Welcome to ES Lawn Care</h1>
             <h2 class="tagline fade-in" style="animation-delay: 0.3s;">Your Lawn, Our Passion</h2>
             <p class="hero-text fade-in" style="animation-delay: 0.6s;">
-                Create a lawn you’ll love with our expert mowing, landscaping, and yearly maintenance services. Trusted by homeowners and businesses in Winston-Salem, NC. At ES Lawn Care, we specialize in transforming your outdoor spaces into lush, green havens. Our team provides professional mowing to keep your grass neat, landscaping to enhance your property’s appeal, and annual maintenance like plugging and reseeding to ensure long-term lawn health. We’re committed to quality, reliability, and customer satisfaction, making us the top choice for lawn care in Winston-Salem. Schedule your free consultation today and see the difference ES Lawn Care can make!
+                Create a lawn you’ll love with our expert mowing, landscaping, and yearly maintenance services. Trusted by homeowners and businesses in Winston-Salem, NC. At ES Lawn Care, we specialize in transforming your outdoor spaces into lush, green havens. Schedule your free consultation today and see the difference ES Lawn Care can make!
             </p>
         </div>
         <div class="featured-section">
@@ -48,19 +75,19 @@
             <div class="featured-gallery">
                 <div class="gallery-item">
                     <a href="lawn-maintenance.html#plugging-reseeding">
-                        <img src="plugging-reseeding1.webp" alt="Seeding a Lawn" width="200" height="150" class="featured-img">
+                        <img src="plugging-reseeding1.webp" alt="Seeding a Lawn" width="200" height="150" class="featured-img" loading="lazy">
                         <div class="overlay"><span>Seeding a Lawn</span></div>
                     </a>
                 </div>
                 <div class="gallery-item">
                     <a href="lawn-maintenance.html#plugging-reseeding">
-                        <img src="lawn-before.webp" alt="Lawn Before Reseeding" width="200" height="150" class="featured-img">
+                        <img src="lawn-before.webp" alt="Lawn Before Reseeding" width="200" height="150" class="featured-img" loading="lazy">
                         <div class="overlay"><span>Before Reseeding</span></div>
                     </a>
                 </div>
                 <div class="gallery-item">
                     <a href="lawn-maintenance.html#plugging-reseeding">
-                        <img src="lawn-after1.webp" alt="Lawn After Reseeding" width="200" height="150" class="featured-img">
+                        <img src="lawn-after1.webp" alt="Lawn After Reseeding" width="200" height="150" class="featured-img" loading="lazy">
                         <div class="overlay"><span>After Reseeding</span></div>
                     </a>
                 </div>
@@ -128,6 +155,10 @@
                 </blockquote>
             </div>
             <a href="testimonials.html" class="see-more-link">See More Reviews</a>
+            <div class="quick-quote">
+                <h3>Quick Quote?</h3>
+                <a href="contact.html" class="cta-button">Get Yours Now</a>
+            </div>
         </div>
         <a href="contact.html" class="cta-button">Get a Free Quote</a>
     </section>
