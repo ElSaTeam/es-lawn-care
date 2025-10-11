@@ -6,15 +6,42 @@
     <meta name="description" content="Contact ES Lawn Care for top lawn care services in Winston-Salem, NC. Use our form or call us to schedule your free consultation today!">
     <title>Contact ES Lawn Care | Winston-Salem, NC</title>
     <link rel="stylesheet" href="/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" defer>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" rel="preconnect">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" defer rel="preload">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://www.google.com/recaptcha/api.js">
+    <link rel="preload" href="/ES Lawn Care Logo.webp" as="image">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Contact ES Lawn Care - Winston-Salem Lawn Services">
+    <meta property="og:description" content="Get in touch for expert mowing, landscaping, and maintenance. Free quotes available!">
+    <meta property="og:image" content="https://eslawncarenc.com/ES Lawn Care Logo.webp">
+    <meta property="og:url" content="https://eslawncarenc.com/contact.html">
+    <!-- Local Business Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "ES Lawn Care",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Winston-Salem",
+        "addressRegion": "NC"
+      },
+      "telephone": "(336) 575-0965",
+      "url": "https://eslawncarenc.com",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "50"
+      }
+    }
+    </script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <div class="header-nav-container">
         <header>
-            <img src="/ES Lawn Care Logo.webp" alt="ES Lawn Care Logo" width="300" height="100">
+            <img src="/ES Lawn Care Logo.webp" alt="ES Lawn Care Logo" width="300" height="100" loading="lazy">
         </header>
         <nav role="navigation">
             <input type="checkbox" id="menu-toggle" class="menu-toggle">
@@ -44,14 +71,22 @@
             <div class="contact-form">
                 <h2>Send Us a Message</h2>
                 <p>We understand that every lawn is unique, which is why we offer customized lawn care plans to suit your specific requirements. From regular maintenance to one-time cleanups, our team ensures your lawn stays healthy and vibrant year-round. We also provide expert advice on lawn care practices, such as proper watering and fertilization, to help you maintain your lawn between our visits. Our goal is to make lawn care hassle-free for you, so you can enjoy your outdoor space without the stress. Contact us today to learn more about our services, discuss your lawn care needs, or get a free quote. We look forward to working with you!</p>
-                <form id="contact-form" action="/.netlify/functions/send-sms-via-email" method="POST" name="contact">
+                <form id="contact-form" action="/.netlify/functions/send-sms-via-email" method="POST" name="contact" enctype="multipart/form-data">
                     <input type="hidden" name="form-name" value="contact">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" required></textarea>
+                    <label for="user_name">Full Name <span style="color: red;">*</span></label>
+                    <input type="text" id="user_name" name="user_name" required aria-required="true" placeholder="e.g., John Doe">
+                    
+                    <label for="user_phone">Phone Number <span style="color: red;">*</span></label>
+                    <input type="tel" id="user_phone" name="user_phone" required aria-required="true" placeholder="(336) 555-0123" pattern="^\(\d{3}\) \d{3}-\d{4}$" title="Format: (123) 456-7890">
+                    
+                    <label for="user_email">Email <span style="color: red;">*</span></label>
+                    <input type="email" id="user_email" name="user_email" required aria-required="true" placeholder="e.g., john@example.com">
+                    
+                    <label for="message">Message <span style="color: red;">*</span></label>
+                    <textarea id="message" name="message" required aria-required="true" placeholder="Tell us about your lawn care needs..."></textarea>
+                    
                     <div class="g-recaptcha" data-sitekey="6LdG2RorAAAAAIiLSRTk-sEVew2JNwg-9Xdhchi2"></div>
-                    <button type="submit">Send Message</button>
+                    <button type="submit">Send Inquiry</button>
                 </form>
             </div>
         </div>
@@ -92,6 +127,8 @@
         }
         const formData = new FormData(form);
         formData.append('g-recaptcha-response', recaptchaResponse);
+        formData.append('user_phone', document.getElementById('user_phone').value);
+        formData.append('user_email', document.getElementById('user_email').value);
         fetch(form.action, {
             method: 'POST',
             body: formData,
