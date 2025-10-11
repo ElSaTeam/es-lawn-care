@@ -27,7 +27,7 @@ body {
     font-family: 'Roboto', sans-serif; 
     line-height: 1.6; 
     color: var(--text-dark); 
-    background: url('pristine-lawn.webp') center/cover fixed;
+    background: linear-gradient(rgba(46,125,50,0.6), rgba(10,10,10,0.8)), url('pristine-lawn.webp') center/cover fixed;
     min-height: 100vh;
     min-height: -webkit-fill-available; /* Fix iOS Safari height */
     position: relative;
@@ -341,6 +341,7 @@ cite {
     object-fit: cover; 
     border-radius: 8px; 
     loading: lazy; /* Lazy load images */
+    will-change: transform; /* Smooth hover on low-end devices */
 }
 
 .gallery-item { 
@@ -456,6 +457,20 @@ cite {
     transform: scale(1.05);
 }
 
+/* Quick Quote Section */
+.quick-quote {
+    text-align: center;
+    margin: 30px 0;
+    padding: 20px;
+    background: rgba(200, 230, 201, 0.2);
+    border-radius: 8px;
+}
+
+.quick-quote h3 {
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
 /* Legal Pages */
 #terms-of-service, #privacy-policy { 
     text-align: left; 
@@ -502,7 +517,7 @@ footer a:hover {
     } 
     nav .nav-links a { 
         display: block !important; 
-        padding: 15px; 
+        padding: 20px 15px; /* Bigger touch area */
         margin: 5px 0; 
         font-size: 1.3em; 
         line-height: 1.6; 
@@ -512,6 +527,7 @@ footer a:hover {
         box-sizing: border-box; 
         z-index: 1001; 
         -webkit-tap-highlight-color: transparent; 
+        transition: background 0.2s; /* Smooth transition */
     } 
     nav .nav-links a:nth-child(odd) {
         background: rgba(0, 0, 0, 0.2);
@@ -555,4 +571,10 @@ footer a:hover {
 
 #contact-form textarea {
     height: 150px;
+}
+
+/* Better form focus */
+#contact-form input:focus, #contact-form textarea:focus {
+    border: 2px solid var(--primary-green);
+    background: rgba(255, 255, 255, 0.9); /* Slight highlight */
 }
