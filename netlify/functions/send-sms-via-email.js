@@ -4,7 +4,7 @@ const querystring = require('querystring');
 const Busboy = require('busboy');
 
 exports.handler = async (event) => {
-  console.log('Full event:', JSON.stringify(event, null, 2)); // Keep for debugging, but sanitize in production
+  console.log('Full event:', JSON.stringify(event, null, 2));
   console.log('HTTP Method:', event.httpMethod);
   console.log('Content-Type:', event.headers['content-type']);
   console.log('Event body (raw):', event.body);
@@ -30,7 +30,6 @@ exports.handler = async (event) => {
 
   try {
     if (contentType.includes('multipart/form-data')) {
-      // Use Busboy for reliable multipart parsing
       const busboy = Busboy({ headers: event.headers });
       const body = event.isBase64Encoded ? Buffer.from(event.body, 'base64') : Buffer.from(event.body);
 
@@ -64,17 +63,20 @@ exports.handler = async (event) => {
     };
   }
 
-  // Sanitize logs to avoid PII exposure
+  // Sanitize logs
   console.log('Parsed formData (sanitized):', JSON.stringify({
-    name: formData.name ? '[REDACTED]' : 'Unknown',
-    email: formData.email ? '[REDACTED]' : 'No email',
-    phone: formData.phone ? '[REDACTED]' : 'No phone',
+    first_name: formData.first_name ? '[REDACTED]' : 'Unknown',
+    last_name: formData.last_name ? '[REDACTED]' : 'Unknown',
+    user_email: formData.user_email ? '[REDACTED]' : 'No email',
+    user_phone: formData.user_phone ? '[REDACTED]' : 'No phone',
     message: formData.message ? '[REDACTED]' : 'No message'
   }, null, 2));
 
-  const { name = 'Unknown', email = 'No email', phone = 'No phone', message = 'No message', 'g-recaptcha-response': recaptchaResponse, honeypot = '' } = formData;
+  // Combine first and last name
+  const fullName = `${formData.first_name || ''} ${formData.last_name || ''}`.trim() || 'Unknown';
+  const { user_email: email = 'No email', user_phone: phone = 'No phone', message = 'No message', 'g-recaptcha-response': recaptchaResponse, honeypot = '' } = formData;
 
-  // Honeypot check: If filled (by bots), reject
+  // Honeypot check
   if (honeypot) {
     console.log('Honeypot triggered');
     return {
@@ -83,8 +85,8 @@ exports.handler = async (event) => {
     };
   }
 
-  if (!name || !message) {
-    console.log('Missing name or message:', { name, message });
+  if (!fullName || !message) {
+    console.log('Missing name or message:', { fullName, message });
     return {
       statusCode: 400,
       body: JSON.stringify({ error: 'Missing name or message' })
@@ -99,6 +101,7 @@ exports.handler = async (event) => {
     };
   }
 
+  // reCAPTCHA verification (unchanged)
   try {
     const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY;
     if (!recaptchaSecret) {
@@ -125,7 +128,8 @@ exports.handler = async (event) => {
     };
   }
 
-  const transporter = nodemailer.createTransport({
+  // Email setup (to your Gmail and user confirmation)
+  const transporter = nodemailer.createTransporter({
     service: 'gmail',
     auth: {
       user: process.env.EMAIL_USER,
@@ -133,11 +137,11 @@ exports.handler = async (event) => {
     }
   });
 
-  const inquiryText = `Inquiry from ${name} (${email}, ${phone}): ${message}`;
+  const inquiryText = `Inquiry from ${fullName} (${email}, ${phone}): ${message}`;
 
   const mailOptionsToOwner = {
     from: process.env.EMAIL_USER,
-    to: ['3364806151@vtext.com', '3365750965@tmomail.net'], // Verizon and T-Mobile gateways
+    to: process.env.EMAIL_USER, // Your Gmail
     subject: 'ES Lawn Care Inquiry',
     text: inquiryText
   };
@@ -146,7 +150,7 @@ exports.handler = async (event) => {
     from: process.env.EMAIL_USER,
     to: email,
     subject: 'Thank You for Your Inquiry - ES Lawn Care',
-    text: `Hi ${name},\n\nThank you for reaching out! We've received your message: "${message}". We'll get back to you soon.\n\nBest,\nES Lawn Care Team`
+    text: `Hi ${fullName},\n\nThank you for reaching out! We've received your message: "${message}". We'll get back to you soon.\n\nBest,\nES Lawn Care Team`
   };
 
   try {
@@ -154,14 +158,14 @@ exports.handler = async (event) => {
     if (email !== 'No email') {
       await transporter.sendMail(mailOptionsToUser);
     }
-    console.log('SMS and confirmation sent successfully');
+    console.log('Emails sent successfully');
     return {
       statusCode: 200,
-      headers: { 'Location': '/thank-you.html' }, // Redirect to thank-you page
+      headers: { 'Location': '/thank-you.html' },
       body: JSON.stringify({ message: 'Inquiry sent successfully' })
     };
   } catch (error) {
-    console.log('Failed to send inquiry:', error.message);
+    console.log('Failed to send emails:', error.message);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: 'Failed to send inquiry: ' + error.message })
