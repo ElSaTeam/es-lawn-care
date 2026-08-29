@@ -845,3 +845,19 @@ section cite {
         background: #F3F0E8 !important;
     }
 }
+.header-nav-container,
+header {
+    background: #1B4332;
+}
+header::after {
+    color: #E8F5E9;
+}
+section .hero-text,
+#main-content .hero-text {
+    font-size: inherit;
+    font-weight: 400;
+    color: #334155;
+    text-align: left;
+    text-shadow: none;
+    max-width: 800px;
+}
