@@ -1042,3 +1042,18 @@ footer {
 header::after {
     content: none;
 }
+.top-strip {
+    display: none;
+}
+header::after {
+    content: none;
+}
+#home .featured-section h2,
+#home .featured-section h3 {
+    color: #1B4332;
+    text-shadow: none;
+}
+#home .featured-section p {
+    color: #334155;
+    text-shadow: none;
+}
