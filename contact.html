@@ -71,7 +71,8 @@
             <div class="contact-form">
                 <h2>Send Us a Message</h2>
                 <p>We understand that every lawn is unique, which is why we offer customized lawn care plans to suit your specific requirements. From regular maintenance to one-time cleanups, our team ensures your lawn stays healthy and vibrant year-round. We also provide expert advice on lawn care practices, such as proper watering and fertilization, to help you maintain your lawn between our visits. Our goal is to make lawn care hassle-free for you, so you can enjoy your outdoor space without the stress. Contact us today to learn more about our services, discuss your lawn care needs, or get a free quote. We look forward to working with you!</p>
-                <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="honeypot" class="quote-form">
+                <form id="contact-form" name="contact" method="POST" action="/thank-you.html" data-netlify="true" data-netlify-recaptcha="true" netlify-honeypot="honeypot" class="quote-form">
+                    <input type="hidden" name="form-name" value="contact">
                     <!-- Honeypot for spam protection -->
                     <input type="text" name="honeypot" style="display:none !important; visibility: hidden; position: absolute; left: -9000px;" />
                     <h3>Get a Quote</h3>
@@ -118,7 +119,7 @@
                         </label>
                     </div>
                     
-                    <div class="g-recaptcha" data-sitekey="6LdG2RorAAAAAIiLSRTk-sEVew2JNwg-9Xdhchi2"></div>
+                    <div data-netlify-recaptcha="true"></div>
                     
                     <button type="submit" class="cta-button">Submit</button>
                 </form>
@@ -126,11 +127,10 @@
         </div>
     </section>
     <footer>
-        <p>© 2025 ES Lawn Care LLP. All rights reserved. | <a href="/privacy-policy.html">Privacy Policy</a> | <a href="/terms-of-service.html">Terms of Service</a></p>
+        <p>© 2026 ES Lawn Care LLP. All rights reserved. | <a href="/privacy-policy.html">Privacy Policy</a> | <a href="/terms-of-service.html">Terms of Service</a></p>
     </footer>
     <script defer src="/scripts.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script>
+        <script>
     window.addEventListener('load', function() {
         const headerNav = document.querySelector('.header-nav-container');
         const sections = document.querySelectorAll('section');
@@ -170,17 +170,6 @@
     
     // Email autocomplete is handled natively by datalist
     
-    const form = document.getElementById('contact-form');
-    form.addEventListener('submit', function(event) {
-        const recaptchaResponse = grecaptcha.getResponse();
-        if (!recaptchaResponse) {
-            event.preventDefault();
-            alert('Please complete the reCAPTCHA.');
-            return false;
-        }
-        // reCAPTCHA is valid—allow native form submission (Netlify will handle it)
-        return true;
-    });
-    </script>
+  </script>
 </body>
 </html>
