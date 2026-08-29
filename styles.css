@@ -982,3 +982,36 @@ header::after {
 .nav-links a {
     color: #ffffff;
 }
+:root {
+    --primary-green: #1F4D36;
+    --light-green: #DCE8E1;
+}
+
+.header-nav-container,
+header,
+nav {
+    background: #1F4D36;
+}
+header::after {
+    color: #E8F5E9;
+}
+nav .nav-links a,
+.nav-links a {
+    color: #ffffff;
+}
+.cta-button,
+a.cta-button {
+    background: #1F4D36;
+    color: #ffffff;
+}
+.cta-button:hover,
+a.cta-button:hover {
+    background: #163828;
+    color: #ffffff;
+}
+.trust-bar li {
+    background: #1F4D36;
+}
+footer {
+    background: #163828;
+}
