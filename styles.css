@@ -961,3 +961,13 @@ section .hero-text,
     text-shadow: none;
     max-width: 800px;
 }
+.service-grid {
+    margin-top: 8px;
+    margin-bottom: 36px;
+}
+.service-grid .info-card h3 {
+    font-size: 1.15em;
+}
+#home .service-grid .info-card {
+    min-height: 150px;
+}
