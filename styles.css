@@ -971,3 +971,14 @@ section .hero-text,
 #home .service-grid .info-card {
     min-height: 150px;
 }
+.header-nav-container,
+header,
+nav {
+    background: #2E7D32;
+}
+header::after {
+    color: #ffffff;
+}
+.nav-links a {
+    color: #ffffff;
+}
