@@ -761,3 +761,87 @@ footer {
         padding: 14px 15px;
     }
 }
+html,
+body {
+    background: #F3F0E8 !important;
+    background-image: none !important;
+    color: #1F2933;
+}
+body::before {
+    display: none !important;
+}
+header {
+    background: #111;
+}
+header::after {
+    content: "Call (336) 575-0965";
+    display: block;
+    color: #C8E6C9;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    padding: 0 0 8px;
+}
+section {
+    background: #fff;
+    border: 1px solid #E4DDD0;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(31, 41, 51, 0.08);
+}
+section h1,
+section h2,
+section h3 {
+    color: #1B4332;
+    text-shadow: none;
+}
+section p,
+section li,
+section cite {
+    color: #334155;
+    text-shadow: none;
+}
+.info-card {
+    background: #F8F6F1;
+    border: 1px solid #E4DDD0;
+}
+.info-card h3 {
+    color: #1B4332;
+}
+.info-card p {
+    color: #334155;
+}
+.trust-bar li {
+    background: #2E7D32;
+}
+#home {
+    background:
+        linear-gradient(rgba(12, 24, 12, 0.45), rgba(12, 24, 12, 0.62)),
+        url("pristine-lawn.webp") center/cover;
+    border: none;
+    box-shadow: none;
+}
+#home h1,
+#home h2,
+#home h3 {
+    color: #fff;
+}
+#home p,
+#home li,
+#home .hero-text {
+    color: #E8F5E9;
+}
+#home .info-card {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.28);
+}
+#home .info-card h3 {
+    color: #fff;
+}
+#home .info-card p {
+    color: #E8F5E9;
+}
+@media (prefers-color-scheme: dark) {
+    body {
+        color: #1F2933;
+        background: #F3F0E8 !important;
+    }
+}
