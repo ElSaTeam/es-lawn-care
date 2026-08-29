@@ -1015,3 +1015,30 @@ a.cta-button:hover {
 footer {
     background: #163828;
 }
+.top-strip {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px 20px;
+    background: #163828;
+    padding: 10px 16px 12px;
+}
+.top-strip a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95em;
+}
+.top-strip a.strip-quote {
+    background: #ffffff;
+    color: #1F4D36;
+    padding: 6px 14px;
+    border-radius: 4px;
+}
+.top-strip a.strip-quote:hover {
+    background: #E8F5E9;
+}
+header::after {
+    content: none;
+}
