@@ -1160,3 +1160,56 @@ header::after {
 .featured-section h2 + p {
     text-align: center !important;
 }
+@media (max-width: 768px) {
+    html,
+    body {
+        overflow-x: hidden;
+    }
+    section {
+        padding: 20px 14px !important;
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+    h1 {
+        font-size: 1.55rem !important;
+        line-height: 1.25;
+    }
+    h2 {
+        font-size: 1.25rem !important;
+        line-height: 1.3;
+    }
+    h3,
+    .info-card h3,
+    #home .info-card h3 {
+        font-size: 1.05rem !important;
+    }
+    p,
+    li,
+    .hero-text,
+    .info-card p,
+    #home .info-card p,
+    .featured-section p {
+        font-size: 0.98rem !important;
+        line-height: 1.5 !important;
+    }
+    .audience-grid,
+    .service-grid,
+    .featured-gallery {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        max-width: 100%;
+    }
+    .info-card,
+    #home .info-card {
+        min-width: 0 !important;
+        width: 100%;
+    }
+    .cta-button,
+    .cta-button-inline {
+        width: 100%;
+        min-width: 0;
+    }
+    header img {
+        max-width: 140px;
+    }
+}
