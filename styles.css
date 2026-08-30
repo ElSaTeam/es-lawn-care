@@ -1157,3 +1157,6 @@ header::after {
     max-width: 800px;
     margin: 16px auto !important;
 }
+.featured-section h2 + p {
+    text-align: center !important;
+}
