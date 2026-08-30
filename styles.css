@@ -1226,3 +1226,44 @@ header::after {
         margin: 8px auto;
     }
 }
+@media (max-width: 768px) {
+    html,
+    body {
+        overflow-x: hidden !important;
+        max-width: 100%;
+    }
+    section,
+    #home,
+    #main-content {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .audience-grid,
+    .service-grid,
+    .featured-gallery,
+    .trust-bar {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        gap: 10px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .info-card,
+    #home .info-card,
+    .gallery-item,
+    .featured-img {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+    }
+    .info-card {
+        padding: 12px !important;
+    }
+}
