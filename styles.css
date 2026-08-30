@@ -1073,3 +1073,31 @@ header::after {
     max-width: 800px;
     margin: 16px auto;
 }
+#home .featured-section,
+.featured-section {
+    background: #ffffff !important;
+    border: 1px solid #E4DDD0;
+    border-radius: 12px;
+    padding: 28px 18px;
+    margin: 24px auto;
+    max-width: 1000px;
+}
+#home .featured-section h2,
+#home .featured-section h3,
+.featured-section h2,
+.featured-section h3 {
+    color: #1B4332 !important;
+    text-shadow: none !important;
+    text-align: center;
+}
+#home .featured-section p,
+.featured-section p {
+    color: #334155 !important;
+    text-shadow: none !important;
+    font-size: 1em !important;
+    font-weight: 400 !important;
+    line-height: 1.6 !important;
+    text-align: left !important;
+    max-width: 800px;
+    margin: 16px auto !important;
+}
