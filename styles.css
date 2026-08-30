@@ -1101,3 +1101,41 @@ header::after {
     max-width: 800px;
     margin: 16px auto !important;
 }
+#home {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+#home .hero-image {
+    background:
+        linear-gradient(rgba(12, 24, 12, 0.45), rgba(12, 24, 12, 0.62)),
+        url("pristine-lawn.webp") center/cover;
+    border-radius: 12px;
+    padding: 36px 24px 28px;
+}
+#home .featured-section,
+.featured-section {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 10px 0 20px;
+}
+#home .featured-section h2,
+#home .featured-section h3,
+.featured-section h2,
+.featured-section h3 {
+    color: #1B4332 !important;
+    text-shadow: none !important;
+    text-align: center;
+}
+#home .featured-section p,
+.featured-section p {
+    color: #334155 !important;
+    text-shadow: none !important;
+    font-size: 1em !important;
+    font-weight: 400 !important;
+    line-height: 1.6 !important;
+    text-align: left !important;
+    max-width: 800px;
+    margin: 16px auto !important;
+}
