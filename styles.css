@@ -1139,3 +1139,21 @@ header::after {
     max-width: 800px;
     margin: 16px auto !important;
 }
+#home .featured-section h2,
+#home .featured-section h3,
+.featured-section h2,
+.featured-section h3,
+#home .featured-section p,
+.featured-section p {
+    color: #334155 !important;
+    text-shadow: none !important;
+}
+#home .featured-section p,
+.featured-section p {
+    font-size: 1em !important;
+    font-weight: 400 !important;
+    line-height: 1.6 !important;
+    text-align: left !important;
+    max-width: 800px;
+    margin: 16px auto !important;
+}
