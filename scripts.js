@@ -31,3 +31,9 @@ document.querySelectorAll('.nav-links a').forEach(link => {
         console.log(`Touched: ${link.getAttribute('data-debug')}, href: ${link.getAttribute('href')}`);
     });
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const year = new Date().getFullYear();
+    document.querySelectorAll('footer p').forEach((p) => {
+        p.innerHTML = p.innerHTML.replace(/©\s*\d{4}/, '© ' + year);
+    });
+});
